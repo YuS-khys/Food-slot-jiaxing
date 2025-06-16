@@ -257,10 +257,10 @@ background-size: cover;
             </div>
 
             <div class="nav-buttons">
-                 <button class="nav-btn" onclick="showPage('main-page', event)">🌍 All Cuisines</button>
-                 <button class="nav-btn" onclick="showPage('chinese-page', event)">🥢 Chinese Only</button>
-                 <button class="nav-btn" onclick="showPage('western-page', event)">🍔 Western Only</button>
-                 <button class="nav-btn" onclick="showPage('jiaxing-page', event)">😈 Jiaxing</button>
+                 <button class="nav-btn" onclick="showPage('main-page', this)">🌍 All Cuisines</button>
+                 <button class="nav-btn" onclick="showPage('chinese-page', this)">🥢 Chinese Only</button>
+                 <button class="nav-btn" onclick="showPage('western-page', this)">🍔 Western Only</button>
+                 <button class="nav-btn" onclick="showPage('jiaxing-page', this)">😈 Jiaxing</button>
 
             </div>
 
@@ -311,10 +311,10 @@ background-size: cover;
             </div>
 
             <div class="nav-buttons">
-                <button class="nav-btn" onclick="showPage('main-page', event)">🌍 All Cuisines</button>
-                <button class="nav-btn active" onclick="showPage('chinese-page', event)">🥢 Chinese Only</button>
-                <button class="nav-btn" onclick="showPage('western-page', event)">🍔 Western Only</button>
-                <button class="nav-btn" onclick="showPage('jiaxing-page', event)">😈 Jiaxing</button>
+                <button class="nav-btn" onclick="showPage('main-page', this)">🌍 All Cuisines</button>
+                <button class="nav-btn active" onclick="showPage('chinese-page', this)">🥢 Chinese Only</button>
+                <button class="nav-btn" onclick="showPage('western-page', this)">🍔 Western Only</button>
+                <button class="nav-btn" onclick="showPage('jiaxing-page', this)">😈 Jiaxing</button>
             </div>
 
             <div class="slot-machine">
@@ -363,10 +363,10 @@ background-size: cover;
             </div>
 
             <div class="nav-buttons">
-              <button class="nav-btn" onclick="showPage('main-page', event)">🌍 All Cuisines</button>
-              <button class="nav-btn" onclick="showPage('chinese-page', event)">🥢 Chinese Only</button>
-              <button class="nav-btn" onclick="showPage('western-page', event)">🍔 Western Only</button>
-              <button class="nav-btn" onclick="showPage('jiaxing-page', event)">😈 Jiaxing</button>
+              <button class="nav-btn" onclick="showPage('main-page', this)">🌍 All Cuisines</button>
+              <button class="nav-btn" onclick="showPage('chinese-page', this)">🥢 Chinese Only</button>
+              <button class="nav-btn" onclick="showPage('western-page', this)">🍔 Western Only</button>
+              <button class="nav-btn" onclick="showPage('jiaxing-page', this)">😈 Jiaxing</button>
 
             </div>
 
@@ -416,10 +416,10 @@ background-size: cover;
             </div>
 
             <div class="nav-buttons">
-                <button class="nav-btn" onclick="showPage('main-page', event)">🌍 All Cuisines</button>
-                <button class="nav-btn" onclick="showPage('chinese-page', event)">🥢 Chinese Only</button>
-                <button class="nav-btn" onclick="showPage('western-page', event)">🍔 Western Only</button>
-                <button class="nav-btn active" onclick="showPage('jiaxing-page', event)">😈 Jiaxing</button>
+                <button class="nav-btn" onclick="showPage('main-page', this)">🌍 All Cuisines</button>
+                <button class="nav-btn" onclick="showPage('chinese-page', this)">🥢 Chinese Only</button>
+                <button class="nav-btn" onclick="showPage('western-page', this)">🍔 Western Only</button>
+                <button class="nav-btn active" onclick="showPage('jiaxing-page', this)">😈 Jiaxing</button>
             </div>
 
             <div class="slot-machine">
@@ -556,25 +556,24 @@ background-size: cover;
         const defaultDrinkImage = 'https://plus.unsplash.com/premium_photo-1661677325574-78531df88a91?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
 
         let currentSpinning = false;
+        
+function showPage(pageId, button) {
+    // 隐藏所有页面
+    document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+    });
 
-       function showPage(pageId, event) {
-                   // 隐藏所有页面
-                      document.querySelectorAll('.page').forEach(page => {
-                       page.classList.remove('active');
-             });
+    // 显示选中的页面
+    document.getElementById(pageId).classList.add('active');
 
-                    // 显示当前页面
-                 document.getElementById(pageId).classList.add('active');
+    // 所有按钮移除 .active
+    document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
 
-                  // 所有按钮移除 active 类
-               document.querySelectorAll('.nav-btn').forEach(btn => {
-                       btn.classList.remove('active');
-               });
-
-                    // 当前点击的按钮加上 active 类
-                   event.target.classList.add('active');
-        }
-
+    // 当前点击的按钮添加 .active
+    button.classList.add('active');
+}
         function getRandomItem(array) {
             return array[Math.floor(Math.random() * array.length)];
         }
